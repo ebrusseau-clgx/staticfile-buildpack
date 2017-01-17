@@ -115,6 +115,18 @@ if [[ -e "Staticfile" && "$(grep 'http_strict_transport_security: true' Staticfi
   touch nginx/conf/.enable_hsts
 fi
 
+# Enable MIME nosniff
+if [[ -e "Staticfile" && "$(grep 'mime_nosniff: true' Staticfile)X" != "X" ]]; then
+  status "Enabling MIME nosniff"
+  touch nginx/conf/.enable_mime_nosniff
+fi
+
+# Enable XSS protection
+if [[ -e "Staticfile" && "$(grep 'xss_protection: true' Staticfile)X" != "X" ]]; then
+  status "Enabling XSS protection"
+  touch nginx/conf/.enable_xss_protection
+fi
+
 cp $compile_buildpack_bin/boot.sh .
 
 $compile_buildpack_dir/compile-extensions/bin/store_buildpack_metadata $compile_buildpack_dir $cache_dir

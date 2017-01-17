@@ -1,11 +1,15 @@
 Thanks for contributing to the buildpack. To speed up the process of reviewing your pull request please provide us with:
 
 * A short explanation of the proposed change:
+Add configuration options to buildpack that when enabled will configure nginx with the following vulnerability prevention measures:
+ - Option "xss_protection: true" will set the X-XSS-Protection request header with the value "1; mode=block"
+ - Option "mime_nosniff: true" will set the X-Content-Type-Options request header with the value "nosniff"
 
 * An explanation of the use cases your change solves
+This is a common use case, similar to HSTS; enabling common security preventions should be selectively configurable
 
 * [ ] I have viewed signed and have submitted the Contributor License Agreement
 
-* [ ] I have made this pull request to the `develop` branch
+* [X] I have made this pull request to the `develop` branch
 
-* [ ] I have added an integration test
+* [X] I have added an integration test
